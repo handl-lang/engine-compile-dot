@@ -42,6 +42,7 @@ checksum = "00d174d5400e5e8fd687ad1049e2f578285fa914201b1af7e8b112a4546bd826"
 [[package]]
 name = "handl-language"
 version = "0.1.0"
+source = "git+https://github.com/handl-lang/kernel?branch=main#3ddad41eac4d8dcb213778ceaeeed0e5316e14b6"
 dependencies = [
  "plugin-engine",
  "serde",
