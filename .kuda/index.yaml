@@ -1,0 +1,28 @@
+name: dot
+root: /home/luis/GitHub/handl-lang/dot
+purpose: ''
+modules:
+- compile-dot
+- dot
+- handl-plugin-compile-dot
+commands:
+- cargo check
+- cargo test --workspace
+provenance:
+  files:
+  - Cargo.toml
+  - modules/compile-dot/Cargo.toml
+  - modules/compile-dot/src/output.rs
+  - modules/compile-dot/src/compiler.rs
+  - modules/compile-dot/src/config.rs
+  - modules/compile-dot/src/lib.rs
+  hashes:
+  - 61120497b111dff236a6260ab4e4fc630e2c59c0
+  - 0e6971ea7213377def9493cad874abc2be539d69
+  - 3da4a05dd36e709c6ab82eb9813efb2fd79505b3
+  - 729df42038cd16aa01854595223d5e1a74ea0086
+  - 0fa2c1c7ebe038d3f801b2ec438cfabfd72b3e29
+  - c900746297b327c3103d15ea39f3a00d0f1a69d6
+  commit_sha: e8cd3ef07cfdce32152f6eb4f670725a7b5af32a
+  generated_at: '1792281076'
+  generator: kuda/0.1.0

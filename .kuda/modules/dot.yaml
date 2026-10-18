@@ -1,0 +1,21 @@
+name: dot
+path: Cargo.toml
+purpose: dot
+api:
+- name: dot
+  kind: module
+  file: Cargo.toml
+  line: 1
+  module: dot
+deps: []
+notes: ''
+verify:
+- Cargo.toml
+provenance:
+  files:
+  - Cargo.toml
+  hashes:
+  - 61120497b111dff236a6260ab4e4fc630e2c59c0
+  commit_sha: e8cd3ef07cfdce32152f6eb4f670725a7b5af32a
+  generated_at: '1792281076'
+  generator: kuda-template/0.1.0

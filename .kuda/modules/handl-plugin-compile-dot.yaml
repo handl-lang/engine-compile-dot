@@ -1,0 +1,24 @@
+name: handl-plugin-compile-dot
+path: modules/compile-dot/Cargo.toml
+purpose: Graphviz DOT compiler for `Term` arrow graphs (ADR-0114).
+api:
+- name: handl-plugin-compile-dot
+  kind: module
+  file: modules/compile-dot/Cargo.toml
+  line: 1
+  module: handl-plugin-compile-dot
+deps:
+- handl-plugin-compile
+- plugin-engine
+- serde_json
+notes: ''
+verify:
+- modules/compile-dot/Cargo.toml
+provenance:
+  files:
+  - modules/compile-dot/Cargo.toml
+  hashes:
+  - 0e6971ea7213377def9493cad874abc2be539d69
+  commit_sha: e8cd3ef07cfdce32152f6eb4f670725a7b5af32a
+  generated_at: '1792281076'
+  generator: kuda-template/0.1.0
