@@ -13,7 +13,7 @@ platform workspace.
 `dot`), which emits DOT over `Term` arrow graphs — here as
 `modules/compile-dot`.
 
-`platform` keeps the port and the registry seam; a host opts the target in via
+`host` keeps the port and the registry seam; a host opts the target in via
 a feature on its own manifest (ADR-0128 §Registration).
 
 ## Consequences
