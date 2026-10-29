@@ -1,3 +1,10 @@
+---
+title: '`compile-dot` target'
+type: adr
+date: 2026-10-16
+status: accepted
+---
+
 # ADR-0139: `compile-dot` target
 
 ## Context
