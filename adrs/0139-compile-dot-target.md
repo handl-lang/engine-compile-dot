@@ -3,6 +3,7 @@ title: '`compile-dot` target'
 type: adr
 date: 2026-10-16
 status: accepted
+status_note: Accepted — extracted in ADR-0128 Phase 7.
 ---
 
 # ADR-0139: `compile-dot` target
@@ -29,7 +30,3 @@ a feature on its own manifest (ADR-0128 §Registration).
 - The sibling targets (`term`, `sexp`, `handl`, `js`, `llvm`) follow the same
   shape: `modules/compile-<target>` behind the same port.
 - A DOT-specific change no longer rebuilds the platform workspace.
-
-## Status
-
-Accepted — extracted in ADR-0128 Phase 7.
