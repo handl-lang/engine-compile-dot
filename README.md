@@ -1,6 +1,6 @@
-# compile-dot
+# engine-compile-dot
 
-Graphviz DOT compiler for `Term` arrow graphs — part of the `compile-*`
+Graphviz DOT compiler for `Term` arrow graphs — part of the `engine-compile-*`
 compiler-backend family: consumes Handl `Term` arrow terms and emits
 Graphviz DOT source for visualization.
 
