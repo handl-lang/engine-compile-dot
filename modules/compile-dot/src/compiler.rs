@@ -4,7 +4,7 @@ use std::fmt::Write as _;
 
 use handl_plugin_compile::{CompileError, Compiler, CompilerConfig, CompilerInput, CompilerOutput};
 use hnl_engine::{ArrSource, RewriteWitness, Term};
-use hnl_engine_codegen::{
+use hnl_tool_codegen::{
     ArtifactRef, Change, CodegenError, EmitContext, Emitter as CodegenEmitter,
 };
 use serde_json::Value;
