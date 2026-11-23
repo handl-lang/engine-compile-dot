@@ -199,12 +199,17 @@ fn emit_term(term: &Term, e: &mut Emitter) -> usize {
             body,
             target,
             impl_,
+            acc,
         } => {
             let id = e.node(&format!("Handle {target}"));
             let c1 = emit_term(body, e);
             let c2 = emit_term(impl_, e);
             e.edge(id, c1, "body");
             e.edge(id, c2, "impl");
+            if let Some(acc) = acc {
+                let c3 = emit_term(acc, e);
+                e.edge(id, c3, "acc");
+            }
             id
         }
         Term::Rewrite {
