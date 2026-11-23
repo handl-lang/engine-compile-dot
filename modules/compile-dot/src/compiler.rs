@@ -4,6 +4,9 @@ use std::fmt::Write as _;
 
 use handl_plugin_compile::{CompileError, Compiler, CompilerConfig, CompilerInput, CompilerOutput};
 use hnl_engine::{ArrSource, RewriteWitness, Term};
+use hnl_engine_codegen::{
+    ArtifactRef, Change, CodegenError, EmitContext, Emitter as CodegenEmitter,
+};
 use serde_json::Value;
 
 use crate::config::DotConfig;
@@ -30,6 +33,19 @@ impl Compiler for DotCompiler {
 
     fn target(&self) -> &str {
         "dot"
+    }
+}
+
+/// `Emitter<Term>` over the desired-state codegen kernel (PL-004 T-092):
+/// the same render as [`DotCompiler::compile`], expressed as a `Change`
+/// set (`main.dot`) with no side effects. The legacy `Compiler` impl
+/// stays until `handl-plugin-compile` migrates to the kernel pipeline.
+impl CodegenEmitter<Term> for DotCompiler {
+    fn materialize(&self, ir: &Term, _req: &EmitContext) -> Result<Vec<Change>, CodegenError> {
+        Ok(vec![Change::text(
+            ArtifactRef::new("main.dot"),
+            emit_dot(ir),
+        )])
     }
 }
 
@@ -284,5 +300,44 @@ fn witness_label(witness: &RewriteWitness) -> String {
         RewriteWitness::Compute => "compute".to_string(),
         RewriteWitness::HandlerHint => "handler-hint".to_string(),
         RewriteWitness::Cast => "cast".to_string(),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    fn fixture() -> Term {
+        Term::op_native(
+            "add",
+            vec![
+                Term::op_native("id", vec![]),
+                Term::op_native_lit("elem", vec![], json!(0)),
+            ],
+        )
+    }
+
+    #[test]
+    fn materialize_emits_main_dot_matching_render() {
+        let term = fixture();
+        let changes = DotCompiler
+            .materialize(&term, &EmitContext::new())
+            .expect("materialize");
+        assert_eq!(changes.len(), 1);
+        match &changes[0] {
+            Change::Put {
+                artifact, content, ..
+            } => {
+                assert_eq!(artifact.as_str(), "main.dot");
+                assert_eq!(String::from_utf8(content.clone()).unwrap(), emit_dot(&term));
+                assert!(
+                    String::from_utf8(content.clone())
+                        .unwrap()
+                        .starts_with("digraph {")
+                );
+            }
+            other => panic!("expected Put, got {other:?}"),
+        }
     }
 }
