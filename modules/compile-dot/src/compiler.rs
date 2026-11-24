@@ -4,9 +4,7 @@ use std::fmt::Write as _;
 
 use handl_plugin_compile::{CompileError, Compiler, CompilerConfig, CompilerInput, CompilerOutput};
 use hnl_engine::{ArrSource, RewriteWitness, Term};
-use hnl_tool_codegen::{
-    ArtifactRef, Change, CodegenError, EmitContext, Emitter as CodegenEmitter,
-};
+use hnl_tool_codegen::{ArtifactRef, Change, CodegenError, EmitContext, Emitter as CodegenEmitter};
 use serde_json::Value;
 
 use crate::config::DotConfig;
